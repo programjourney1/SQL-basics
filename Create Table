@@ -1,0 +1,49 @@
+CREATE TABLE CUSTOMER(
+ ID INT NOT NULL,
+ F_Name VARCHAR(30) NOT NULL,
+ L_Name VARCHAR(30) NOT NULL,
+ Address VARCHAR(45) NOT NULL,
+ Zip VARCHAR(10) NOT NULL,
+ PRIMARY KEY (ID)
+);
+
+//
+
+CREATE TABLE ORDERS(
+Order_Num INT NOT NULL,
+Cust_ID INT REFERENCES CUSTOMER(ID),
+Item VARCHAR(30) NOT NULL,
+Quantity INT NOT NULL,
+Order_Date TIMESTAMP NOT NULL,
+Order_Total NUMERIC(5,2),
+PRIMARY KEY (Order_Num)
+);
+
+// Add column
+ALTER TABLE table_name ADD column_name datatype;
+
+// insert
+INSERT INTO CUSTOMER (ID, F_Name, L_Name, Address, Zip) VALUES (12012, 'Cynthia', 'Broussard', '401 Bellevue Plantation', '70503');
+
+//select (retrieve data)
+SELECT * FROM table_name;
+
+//Update
+UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+or
+UPDATE CUSTOMER SET Address = '344 S. Baldwin', Zip = '32456' WHERE ID = 12012;
+
+//delete
+DELETE FROM table WHERE condition;
+or
+DELETE FROM CUSTOMER WHERE id = 12012;
+
+//join
+SELECT table_1.column1,table_1.column2,table_2.column1,....
+FROM table_1 
+JOIN TYPE table_2
+ON table_1.matching_column = table_2.matching_column;
+
+table_1: first table (left table)
+table_2: second table (right table)
+matching_column: Column common to both the tables.
